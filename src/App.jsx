@@ -21,8 +21,8 @@ function App() {
   }, [btnUpdate]);
 
   const [persons, setPersons] = useState([]);
-  const [newName, setNewName] = useState("input new name");
-  const [newNumber, setNewNumber] = useState("input new number");
+  const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
   const [filterName, setFilterName] = useState("");
   const [allPersons, setAllPersons] = useState(persons);
   
@@ -73,7 +73,7 @@ function App() {
   const handleAddButton = (e) => {
     e.preventDefault();
     
-    if(newName === 'input new name' || newNumber === 'input new number'){
+    if(newName === '' || newNumber === ''){
       showAlertUser('blank')
       return
     }
