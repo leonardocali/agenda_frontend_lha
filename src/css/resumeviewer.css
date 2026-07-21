@@ -1,0 +1,74 @@
+.cv-container {
+
+display: block;
+margin: 20px 0;
+}
+.cv-actions {
+text-align: center;
+}
+.btn {
+display: inline-block;
+padding: 12px 24px;
+font-size: 14px;
+font-weight: 600;
+border-radius: 8px;
+text-decoration: none;
+cursor: pointer;
+transition: all 0.25s ease-in-out;
+border: none;
+margin: 0 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+.btn-download {
+background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+color: #ffffff !important;
+}
+.btn-download:hover {
+background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+transform: translateY(-2px);
+box-shadow: 0 6px 12px rgba(2, 132, 199, 0.25);
+}
+.btn-preview {
+background-color: #ffffff;
+color: #0f172a;
+border: 1.5px solid #cbd5e1;
+}
+.btn-preview:hover {
+background-color: #f8fafc;
+border-color: #0284c7;
+color: #0284c7;
+transform: translateY(-2px);
+}
+/* Modal Stylings */
+.modal-overlay {
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background-color: rgba(15, 23, 42, 0.75);
+backdrop-filter: blur(4px);
+display: block;
+z-index: 1000;
+}
+.modal-content {
+width: 80%;
+max-width: 850px;
+margin: 40px auto;
+background: #ffffff;
+
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+.modal-header {
+padding: 14px 20px;
+background-color: #0f172a;
+color: #ffffff;
+font-weight: 600;
+}
+.close-btn {
+float: right;
+background: none;
+border: none;
+color: #ffffff;
+font-size: 20px;
+cursor: pointer;
+}

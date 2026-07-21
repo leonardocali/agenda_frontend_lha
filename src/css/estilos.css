@@ -1,0 +1,428 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    /*font-size: 15px;*/
+}
+.persons {
+    color: grey;
+    padding-top: 5px;
+}
+
+.not-persons {
+    color: rgb(248, 240, 240);
+    background-color: rgb(245, 20, 20);
+    width: max-content ;
+    padding: 2px;
+}
+
+.title-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+.filter-container {
+  /* Ocupa solo el alto de su contenido interno */
+  height: fit-content; 
+  width: 100%;
+  max-width: 500px; /* Evita que el buscador se estire infinitamente en pantallas grandes */
+  margin: 15px auto; /* Centra el contenedor y da espacio vertical suave */
+  padding: 12px 16px;
+  
+  /* Flexbox responsivo */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px; /* Separación interna entre la etiqueta y el input */
+  
+  /* Diseño moderno y limpio */
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-sizing: border-box; /* Asegura que el padding no rompa el ancho total */
+}
+
+.filter-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #495057;
+  user-select: none; /* Evita que se seleccione el texto por error al hacer click rápido */
+}
+
+.filter-input {
+  flex: 1; /* El input se estira para ocupar todo el espacio restante disponible */
+  min-width: 150px; /* Evita que el input colapse por completo en pantallas muy pequeñas */
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto visual cuando el usuario hace click para escribir */
+.filter-input:focus {
+  border-color: #3085d6; /* Combina con el azul que configuramos en SweetAlert2 */
+  box-shadow: 0 0 0 3px rgba(48, 133, 214, 0.15);
+}
+
+/* Media Query: Comportamiento para celulares muy pequeños */
+@media (max-width: 480px) {
+  .filter-container {
+    flex-direction: column; /* Cambia a diseño vertical si la pantalla es muy angosta */
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px;
+  }
+  
+  .filter-input {
+    width: 100%; /* El input ocupa todo el ancho disponible en móviles */
+  }
+}
+
+.agenda-form {
+  /* Ocupa solo el alto de su contenido interno */
+  height: fit-content;
+  width: 100%;
+  max-width: 500px; /* Misma anchura máxima que el filtro para simetría visual */
+  margin: 15px auto;
+  padding: 20px;
+  
+  /* Diseño en columna vertical */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Separación uniforme entre campos */
+  
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sutil sombra para dar profundidad */
+  box-sizing: border-box;
+}
+
+.form-title {
+  font-size: 1.3rem;
+  color: #212529;
+  margin: 0 0 4px 0; /* Espaciado inferior del título */
+  font-weight: 700;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; /* Diseño apilado para mayor claridad de lectura */
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto focus idéntico al filtro */
+.form-input:focus {
+  border-color: #3085d6;
+  box-shadow: 0 0 0 3px rgba(48, 133, 214, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  margin-top: 8px;
+}
+
+/* 
+  Nota: Si tu componente <Button /> renderiza una etiqueta <button>, 
+  estas clases se aplicarán directamente. 
+*/
+.btn-submit {
+  width: auto;
+  min-width: 120px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Color azul para agregar (combina con SweetAlert) */
+.btn-add {
+  background-color: #3085d6;
+}
+.btn-add:hover {
+  background-color: #2260a1;
+}
+
+/* Color verde para actualizar */
+.btn-update {
+  background-color: #28a745;
+}
+.btn-update:hover {
+  background-color: #1e7e34;
+}
+
+.btn-submit:active {
+  transform: scale(0.98); /* Pequeño efecto de hundimiento al hacer click */
+}
+
+/* Media Query: Comportamiento para celulares */
+@media (max-width: 480px) {
+  .agenda-form {
+    padding: 16px;
+    gap: 14px;
+  }
+  
+  .form-actions {
+    justify-content: stretch; /* En móviles, el botón se estira a lo ancho */
+  }
+  
+  .btn-submit {
+    width: 100%;
+  }
+}
+
+/* Contenedor principal de la lista */
+.agenda-list {
+  list-style: none; /* Elimina los puntitos negros por defecto del ul */
+  padding: 0;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 500px; /* Alineado simétricamente con el filtro y formulario anteriores */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Separación entre tarjetas */
+}
+
+/* Estilo de cada tarjeta individual */
+.agenda-card {
+  height: fit-content;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: space-between; /* Empuja la info a la izquierda y botones a la derecha */
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  background-color: #a3f0b5;
+}
+
+/* Efecto visual sutil cuando pasas el mouse por encima */
+.agenda-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #ced4da;
+}
+
+/* Bloque de texto del contacto */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 4px;
+}
+
+.contact-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.contact-number {
+  font-size: 0.95rem;
+  color: #6c757d; /* Color gris más suave para el teléfono */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-icon {
+  font-size: 0.9rem;
+}
+
+/* Bloque contenedor de botones */
+.card-actions {
+  display: flex;
+  gap: 8px; /* Separación entre el botón Editar y Eliminar */
+}
+
+/* Estilo base para los botones internos de la tarjeta */
+.btn-action {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Botón Editar (Gris/Azulado discreto) */
+.btn-edit {
+  background-color: #f1f3f5;
+  color: #495057;
+}
+.btn-edit:hover {
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+/* Botón Eliminar (Rojo suave de advertencia) */
+.btn-delete {
+  background-color: #fff5f5;
+  color: #e03131;
+}
+.btn-delete:hover {
+  background-color: #ffe3e3;
+  color: #c92a2a;
+}
+
+/* Mensaje de Agenda Vacía */
+.not-persons {
+  text-align: center;
+  color: #868e96;
+  font-style: italic;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 10px auto;
+  border: 1px dashed #dee2e6; /* Borde punteado elegante */
+}
+
+/* --- MEDIA QUERY: ADAPTACIÓN PARA CELULARES --- */
+@media (max-width: 480px) {
+  .agenda-card {
+    flex-direction: column; /* Apila el texto arriba y botones abajo */
+    align-items: flex-start; /* Alinea todo a la izquierda */
+    gap: 12px;
+  }
+
+  .card-actions {
+    width: 100%; /* Los botones se estiran para aprovechar el espacio */
+    justify-content: flex-end; /* Los mantiene a la derecha inferior de la tarjeta */
+  }
+  
+  .btn-action {
+    flex: 1; /* Hace que ambos botones midan exactamente lo mismo en celulares */
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   ESTILOS PREMIUM PARA BOTONES DE LA AGENDA
+   ========================================================================== */
+
+/* --- Estilo Base Común (Para todos los botones) --- */
+.btn-submit, .btn-action {
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espacio por si agregas íconos en el futuro */
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 8px; /* Bordes más modernos y suaves */
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: none;
+  
+  /* Transición suave para todos los efectos visuales */
+  transition: 
+    background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+/* --- 1. BOTÓN AGREGAR (Formulario) --- */
+.btn-add {
+  background: linear-gradient(135deg, #3085d6 0%, #1e6cb8 100%);
+  color: #ffffff;
+  padding: 12px 24px;
+  box-shadow: 0 4px 12px rgba(48, 133, 214, 0.25);
+}
+
+.btn-add:hover {
+  background: linear-gradient(135deg, #3b94eb 0%, #257bc9 100%);
+  box-shadow: 0 6px 16px rgba(48, 133, 214, 0.4);
+  transform: translateY(-1px); /* Elevación sutil */
+}
+
+/* --- 2. BOTÓN ACTUALIZAR (Formulario) --- */
+.btn-update {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  color: #ffffff;
+  padding: 12px 24px;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+}
+
+.btn-update:hover {
+  background: linear-gradient(135deg, #34bc53 0%, #24943f 100%);
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+  transform: translateY(-1px);
+}
+
+/* --- 3. BOTÓN EDITAR (En la tarjeta de contacto) --- */
+.btn-edit {
+  background-color: #f1f3f5;
+  color: #495057;
+  padding: 8px 16px;
+  border: 1px solid #e9ecef;
+}
+
+.btn-edit:hover {
+  background-color: #e3fafc; /* Sutil tono aqua al pasar el mouse */
+  color: #0b7285;
+  border-color: #99e9f2;
+  box-shadow: 0 2px 8px rgba(11, 114, 133, 0.1);
+}
+
+/* --- 4. BOTÓN ELIMINAR (En la tarjeta de contacto) --- */
+.btn-delete {
+  background-color: #fff5f5;
+  color: #e03131;
+  padding: 8px 16px;
+  border: 1px solid #ffe3e3;
+}
+
+.btn-delete:hover {
+  background-color: #ffe3e3;
+  color: #c92a2a;
+  border-color: #ffc9c9;
+  box-shadow: 0 2px 8px rgba(199, 42, 42, 0.1);
+}
+
+/* --- EFECTO DE CLIC GENERAL (Feedback táctil instantáneo) --- */
+.btn-submit:active, .btn-action:active {
+  transform: scale(0.96) translateY(0); /* Simula hundimiento físico */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- ESTADO DESHABILITADO (Por si se está enviando el formulario) --- */
+.btn-submit:disabled, .btn-action:disabled {
+  background: #e9ecef !important;
+  color: #adb5bd !important;
+  box-shadow: none !important;
+  transform: none !important;
+  cursor: not-allowed;
+  border: none !important;
+}
