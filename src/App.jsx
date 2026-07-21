@@ -89,8 +89,8 @@ function App() {
       setPersons(resp)
     })
     showAlertUser('add')
-    setNewNumber("input new name");
-    setNewName("input new number");
+    setNewNumber("");
+    setNewName("");
   };
 
   const handledModifiPerson = (e) => {
@@ -104,8 +104,8 @@ function App() {
     })
     setBtnAdd(false)
     setBtnUpdate(true)
-    setNewNumber("input new name");
-    setNewName("input new number");
+    setNewNumber("");
+    setNewName("");
   }
 
   const hanledUpdatePErson = (e) =>{
@@ -124,8 +124,8 @@ function App() {
     setBtnAdd(true)
     setBtnUpdate(false)
 
-    setNewNumber("input new name");
-    setNewName("input new number");
+    setNewNumber("");
+    setNewName("");
 
   }
 
@@ -138,8 +138,8 @@ function App() {
       .then(deleteU => setPersons(deleteU))
       showAlertUser('deleteSuccess');
       setBtnUpdate(!btnUpdate)
-      setNewNumber("input new name");
-      setNewName("input new number");
+      setNewNumber("");
+      setNewName("");
       setBtnUpdate(false)
     }
   }
