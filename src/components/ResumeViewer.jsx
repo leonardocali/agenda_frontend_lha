@@ -22,7 +22,7 @@ export const ResumeViewer = () => {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3>Previsualización - Hoja de Vida</h3>
+              <h3>Preview CV</h3>
               <button className="close-btn" onClick={() => setShowModal(false)}>
                 ×
               </button>
