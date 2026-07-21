@@ -22,7 +22,7 @@ const PersonsForm = ({
             className="form-input"
             value={name}
             onChange={handledName}
-            placeholder="Ej. Leonardo HerreraPérez"
+            placeholder="Ej. Leonardo Herrera Alvarado"
           />
         </div>
 
@@ -32,7 +32,7 @@ const PersonsForm = ({
             className="form-input"
             value={number}
             onChange={handledNumber}
-            placeholder="Ej. 555-1234"
+            placeholder="Ej. 3172985011"
             type="text"
             pattern="\d{10}"
             maxLength='10'
