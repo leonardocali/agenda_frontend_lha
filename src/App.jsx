@@ -73,7 +73,7 @@ function App() {
   const handleAddButton = (e) => {
     e.preventDefault();
     
-    if(newName === 'input new name' || newNumber === 'input new number' || newName === '' || newNumber === ''){
+    if(newName === 'input new name' || newNumber === 'input new number'){
       showAlertUser('blank')
       return
     }
