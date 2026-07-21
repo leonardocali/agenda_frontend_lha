@@ -3,7 +3,7 @@ import '../css/resumeviewer.css'
 
 export const ResumeViewer = () => {
   const [showModal, setShowModal] = useState(false);
-  const downLoadUrl = "https://agenda-frontend-lha.vercel.app/public/docs/HV_Leonardo_Herrera_Alvarado.pdf";
+  const downLoadUrl = "https://agenda-frontend-lha.vercel.app/docs/HV_Leonardo_Herrera_Alvarado.pdf";
 
   return (
     <div className="cv-container">
