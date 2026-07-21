@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://192.168.80.73:3001/api/persons";
+const baseUrl = "https://api-agenda-lha.onrender.com/api/persons";
 
 const getAll = () =>{
     const request = axios.get(baseUrl)
