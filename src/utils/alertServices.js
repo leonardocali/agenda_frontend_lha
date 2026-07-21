@@ -80,7 +80,7 @@ export const showAlertUser = async (errorBackend) => {
     return MySwal.fire({
       title: 'Delete user',
       text: "The user was delete succesfully.",
-      icon: 'succes',
+      icon: 'success',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Close',
     });
