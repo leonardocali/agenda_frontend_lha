@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "https://api-agenda-lha.onrender.com/api/persons";
+//const baseUrl = "https://api-agenda-lha.onrender.com/api/persons";
+const baseUrl = "http://localhost:3001/api/persons";
 
 const getAll = () =>{
     const request = axios.get(baseUrl)
@@ -13,7 +14,6 @@ const create = (newObj) => {
 }
 
 const updatePerson = (id, newObj) =>{
-    
     const request = axios.patch(`${baseUrl}/${id}`, newObj)
     return request.then(response => response.data)
 }
@@ -28,4 +28,9 @@ const deleteP = (id) =>{
     return request.then(response => response.data)
 }
 
-export default { getAll, create, updatePerson, edit, deleteP }
+const dataBDMongo = () =>{
+    const request = axios.get(baseUrl+'/mongobd')
+    return request.then(response => response.data)
+}
+
+export default { getAll, create, updatePerson, edit, deleteP, dataBDMongo }

@@ -13,21 +13,19 @@ function App() {
   
   useEffect(() => {
     personService
-    .getAll()
-    .then(dataInicial => {
-      setPersons(dataInicial)
-      setAllPersons(dataInicial)
-    });
+    .dataBDMongo()
+    .then(databd => {
+      setPersons(databd)
+    } );
   }, [btnUpdate]);
 
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filterName, setFilterName] = useState("");
-  const [allPersons, setAllPersons] = useState(persons);
-  
-  const [btnAdd, setBtnAdd] = useState(true);
-  const [id, setId] = useState(0);
+  const [userBD, setUserBD] = useState([]);
+   const [btnAdd, setBtnAdd] = useState(true);
+  const [id, setId] = useState('');
 
   const handleChangeAddName = (e) => {
     const valueName = e.target.value;
@@ -51,25 +49,15 @@ function App() {
     setNewNumber(valuePhone);
   };
 
-  const handleFilterName = (e) => {
-    const valueFilter = e.target.value;
-    const minus = valueFilter.toLowerCase();
-    setFilterName(valueFilter);
-
-    const personFilter = persons.filter((per) =>
-      per.name.toLowerCase().includes(minus),
-    );
-
-    if (personFilter.length > 0 && minus !== "") {
-      setPersons(personFilter);
-    } else {
-      personService
-      .getAll()
-      .then(datos => setPersons(datos))
-      setFilterName('');
-    }
+  const handleFilterName = (e) => {   
+    setFilterName(e.target.value);
   };
 
+  const personToShow = filterName.trim() === ""
+  ? persons
+  : persons.filter(per => per.name.toLowerCase().includes(filterName.toLocaleLowerCase()));
+
+  
   const handleAddButton = (e) => {
     e.preventDefault();
     
@@ -94,11 +82,13 @@ function App() {
   };
 
   const handledModifiPerson = (e) => {
-    
+        
     setId(e.target.id)
     personService
     .edit(e.target.id)
     .then(edit =>{
+      console.log(edit);
+      
       setNewName(edit.name)
       setNewNumber(edit.number)
     })
@@ -110,7 +100,7 @@ function App() {
 
   const hanledUpdatePErson = (e) =>{
     e.preventDefault()
-
+    
     const objetUpdate = {
       name:newName,
       number:newNumber
@@ -163,7 +153,7 @@ function App() {
         />
         <h2 className="title-main">Create by</h2>
         <ResumeViewer />
-        <Persons data={persons} handledM={handledModifiPerson} handledU={handleDeletePerson}/>
+        <Persons data={personToShow} handledM={handledModifiPerson} handledU={handleDeletePerson}/>
       </div>
     </>
   );
