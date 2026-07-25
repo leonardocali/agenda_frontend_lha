@@ -2,7 +2,7 @@ import Button from "./Button";
 import "../css/estilos.css";
 
 const Persons = ({ data, handledM, handledU }) => {
-  const listItems = data.map((person,key) => 
+  const listItems = data?.map((person,key) => 
     <li key={key} className="agenda-card">
       <div className="card-info">
         <span className="contact-name">{person.name}</span>
@@ -19,7 +19,7 @@ const Persons = ({ data, handledM, handledU }) => {
           className="btn-action btn-edit"
         />
         <Button
-          handled={handledU}
+          handled={() =>handledU(person._id)}
           name="Delete"
           id={person._id}
           className="btn-action btn-delete"
@@ -30,10 +30,10 @@ const Persons = ({ data, handledM, handledU }) => {
 
   return (
     <>
-      <div className="title-main">
+      <div className="title-main-persons">
         <h2>Contacts</h2>
       </div>
-      {data.length === 0 && (
+      {!data?.length && (
         <div className="not-persons">There are no records in the agenda</div>
       )}
       <ul className="agenda-list">{listItems}</ul>

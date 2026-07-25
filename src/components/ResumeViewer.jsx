@@ -24,13 +24,13 @@ export const ResumeViewer = () => {
             <div className="modal-header">
               <h3>Preview CV</h3>
               <button className="close-btn" onClick={() => setShowModal(false)}>
-                ×
+                ❌
               </button>
             </div>
             <div className="modal-body">
               <iframe
                 src={downLoadUrl}
-                title="Previsualización CV"
+                title="Preview CV"
                 width="100%"
                 height="550px"
               />

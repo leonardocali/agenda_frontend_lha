@@ -122,18 +122,25 @@ function App() {
     });
   };
 
-  const handleDeletePerson = async (e) =>{
+  const handleDeletePerson = async (id) =>{
+    console.log("ID ENVIADO: ", id);
+    
     const option = await showAlertUser('deleteconfirm')
       
     if(option){
       personService
-      .deleteP(e.target.id)
-      .then(deleteU => setPersons(deleteU))
-      showAlertUser('deleteSuccess');
-      setBtnUpdate(!btnUpdate)
-      setNewNumber("");
-      setNewName("");
-      setBtnUpdate(false)
+      .deleteP(id)
+      .then((res) => {
+        setPersons(res.data);
+        showAlertUser('deleteSuccess');
+        setNewNumber("");
+        setNewName("");
+        setBtnUpdate(false);
+        setBtnAdd(true);
+      })
+      .catch(error =>{
+        console.error("Error al eliminar el contacto ", error);
+      });
     }
   }
 
