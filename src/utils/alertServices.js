@@ -10,22 +10,22 @@ export const showAlertUser = async (errorBackend) => {
   // 1. Validar si el nombre ya existe
   if (mensaje.includes('name')) {
     return MySwal.fire({
-      title: 'Nombre Duplicado',
-      text: 'Ya tienes un contacto registrado con este nombre en tu agenda.',
+      title: 'Duplicate name',
+      text: 'A contact with this name is already registered in your phonebook.',
       icon: 'warning',
       confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Corregir'
+      confirmButtonText: 'Verify name'
     });
   }
 
   // 2. Validar si el número ya existe
   if (mensaje.includes('phone')) {
     return MySwal.fire({
-      title: 'Número Existente',
-      text: 'Este número de teléfono ya está asignado a otro contacto.',
+      title: "Existing Number",
+      text: "This phone number is already assigned to another contact.",
       icon: 'warning',
       confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Verificar número'
+      confirmButtonText: 'Verify number'
     });
   }
 
@@ -69,7 +69,7 @@ export const showAlertUser = async (errorBackend) => {
   if (mensaje.includes('blank')) {
     return MySwal.fire({
       title: 'Create user',
-      text: 'The field is emppty plesea validate this.',
+      text: 'This field cannot be empty.',
       icon: 'warning' ,
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Close'
