@@ -87,8 +87,6 @@ function App() {
     personService
     .edit(e.target.id)
     .then(edit =>{
-      console.log(edit);
-      
       setNewName(edit.name)
       setNewNumber(edit.number)
     })
@@ -98,26 +96,31 @@ function App() {
     setNewName("");
   }
 
-  const hanledUpdatePErson = (e) =>{
-    e.preventDefault()
-    
+  const hanledUpdatePErson = (e) => {
+    e.preventDefault();
+
     const objetUpdate = {
-      name:newName,
-      number:newNumber
-    }
-    
+      name: newName,
+      number: newNumber,
+    };
+
     personService
-    .updatePerson(id,objetUpdate)
-    .then(resp => resp.data)
-    showAlertUser('update');
-    
-    setBtnAdd(true)
-    setBtnUpdate(false)
+    .updatePerson(id, objetUpdate)
+    .then((resp) => {
+      const personUpdate = resp.data || resp;
+      setPersons(persons.map((p) => (p.id === id ? personUpdate : p)));
+      showAlertUser("update");
 
-    setNewNumber("");
-    setNewName("");
+      setBtnAdd(true);
+      setBtnUpdate(false);
 
-  }
+      setNewNumber("");
+      setNewName("");
+    })
+    .catch(error => {
+      console.error("Error to update frontend", error);
+    });
+  };
 
   const handleDeletePerson = async (e) =>{
     const option = await showAlertUser('deleteconfirm')
