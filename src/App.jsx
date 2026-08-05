@@ -74,11 +74,15 @@ function App() {
     personService
     .create(addPersonObj)
     .then(resp => {
-      setPersons(resp)
+      console.log(resp);
+        setPersons(resp)
+        showAlertUser('add')
+        setNewNumber("");
+        setNewName("");  
+    }).catch(error =>{
+      showAlertUser('errorBD')
     })
-    showAlertUser('add')
-    setNewNumber("");
-    setNewName("");
+    
   };
 
   const handledModifiPerson = (e) => {

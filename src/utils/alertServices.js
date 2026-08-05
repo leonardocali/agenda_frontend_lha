@@ -97,6 +97,14 @@ export const showAlertUser = async (errorBackend) => {
     })
   }
 
+  if(mensaje.includes('errorBD'))  
+    return MySwal.fire({
+    title: 'Error in the agenda',
+    text: 'Please confirm that the name field contains more than five characters',
+    icon: 'error',
+    confirmButtonColor: '#d33'
+  });
+
 
   // Error genérico (por si falla otra cosa)
   return MySwal.fire({
